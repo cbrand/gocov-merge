@@ -17,6 +17,7 @@ func main() {
 		fmt.Println("Unable to parse file")
 		os.Exit(1)
 	}
+	fmt.Print("mode: count\n")
 	for _, profile := range profiles {
 		p := &Profile{profile, make([]*ProfileBlock, 0)}
 		p.MergeBlocks()
