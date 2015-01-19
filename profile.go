@@ -26,13 +26,11 @@ func (p *Profile) getBlock(otherBlock cover.ProfileBlock) (*ProfileBlock, error)
 func (p *Profile) MergeBlocks() {
 	for i, otherBlock := range p.Blocks {
 		myBlock, err := p.getBlock(otherBlock)
-		fmt.Println("loop")
 		if err == nil {
 			myBlock.ImportCount(otherBlock)
 			continue
 		}
 		if err == ErrNoBlock {
-			fmt.Println("new block")
 			p.newBlocks = append(p.newBlocks, &ProfileBlock{&p.Blocks[i]})
 			continue
 		}
