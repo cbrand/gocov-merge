@@ -46,3 +46,14 @@ func (p *Profile) newBlocksToBlocks() {
 		p.Blocks[i] = *b.ProfileBlock
 	}
 }
+
+func (p *Profile) Format() string {
+	res := ""
+	for _, block := range p.Blocks {
+		res += fmt.Sprintf("%s:%d.%d,%d.%d %d %d\n",
+			p.FileName, block.StartLine, block.StartCol,
+			block.EndLine, block.EndCol,
+			block.NumStmt, block.Count)
+	}
+	return res
+}
