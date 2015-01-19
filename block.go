@@ -4,6 +4,8 @@ import (
 	"golang.org/x/tools/cover"
 )
 
+// ProfileBlock wraps the cover.ProfileBlock structure and adds
+// additional merge and validation functionality to it.
 type ProfileBlock struct {
 	*cover.ProfileBlock
 }
@@ -27,6 +29,9 @@ func (b *ProfileBlock) sameRange(other cover.ProfileBlock) bool {
 	return true
 }
 
+// ImportCount adds the count from the given cover.ProfileBlock
+// struct. This only works if the rest of the ProfileBlock fields
+// are the same.
 func (b *ProfileBlock) ImportCount(other cover.ProfileBlock) {
 	if !b.sameRange(other) {
 		panic("not the same range")

@@ -9,7 +9,7 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println("Syntax: gocov-merge FILENAME\n")
+		fmt.Println("Syntax: gocov-merge FILENAME")
 		os.Exit(1)
 	}
 	profiles, err := cover.ParseProfiles(os.Args[1])

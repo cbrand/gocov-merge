@@ -7,8 +7,12 @@ import (
 	"golang.org/x/tools/cover"
 )
 
+// ErrNoBlock gets returned if no given block with the configuration
+// yet exists in the newly created blobs.
 var ErrNoBlock = errors.New("no block")
 
+// Profile wraps the cover.Profile package and adds an additional
+// list which is used during the block merge process.
 type Profile struct {
 	*cover.Profile
 	newBlocks []*ProfileBlock
@@ -23,6 +27,7 @@ func (p *Profile) getBlock(otherBlock cover.ProfileBlock) (*ProfileBlock, error)
 	return nil, ErrNoBlock
 }
 
+// MergeBlocks combines the Blocks in this ProfileBlock.
 func (p *Profile) MergeBlocks() {
 	for i, otherBlock := range p.Blocks {
 		myBlock, err := p.getBlock(otherBlock)
@@ -48,6 +53,8 @@ func (p *Profile) newBlocksToBlocks() {
 	}
 }
 
+// Format prints the Blocks into the common cover format which can
+// be further processed.
 func (p *Profile) Format() string {
 	res := ""
 	for _, block := range p.Blocks {
