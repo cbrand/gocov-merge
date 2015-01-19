@@ -1,0 +1,2 @@
+# gocov-merge
+gocov-merge
