@@ -19,7 +19,7 @@ func main() {
 	}
 	fmt.Print("mode: count\n")
 	for _, profile := range profiles {
-		p := &Profile{profile, make([]*ProfileBlock, 0)}
+		p := &Profile{profile, []*ProfileBlock{}}
 		p.MergeBlocks()
 		fmt.Print(p.Format())
 	}
